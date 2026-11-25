@@ -1,0 +1,21 @@
+{
+  "name": "sauce-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Testes de sistema E2E do Swag Labs com Playwright e TypeScript.",
+  "scripts": {
+    "test": "playwright test",
+    "test:baseline": "playwright test --grep-invert @diagnostico",
+    "test:diagnostics": "playwright test --grep @diagnostico",
+    "test:report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "@types/node": "^24.0.0",
+    "typescript": "6.0.3"
+  }
+}
