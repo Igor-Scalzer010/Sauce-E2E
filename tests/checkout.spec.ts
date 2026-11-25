@@ -60,6 +60,7 @@ test.describe('RT-07 | Conclusão e cancelamento da compra', () => {
       await page.getByTestId('finish').click();
       await attachScreenshot(page, testInfo, `${id}-apos-finalizar`);
       await expect(page).toHaveURL('/checkout-complete.html');
+      await expect(page.getByTestId('title')).toHaveText('Checkout: Complete!');
       await expect(page.getByTestId('complete-header')).toHaveText('Thank you for your order!');
       await expect(page.getByTestId('shopping-cart-badge')).toHaveCount(0);
       await attachScreenshot(page, testInfo, `${id}-confirmacao`);

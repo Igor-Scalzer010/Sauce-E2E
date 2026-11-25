@@ -15,6 +15,7 @@ test.describe('RT-04 | Carrinho', () => {
       const addButton = backpack.getByRole('button', { name: 'Add to cart', exact: true });
       const removeButton = backpack.getByRole('button', { name: 'Remove', exact: true });
 
+      await expect(cartBadge).toHaveCount(0);
       await addButton.click();
       await expect(cartBadge).toHaveText('1');
       await expect(removeButton).toBeVisible();
@@ -35,16 +36,21 @@ test.describe('RT-04 | Carrinho', () => {
   test('CT-06-CAR-STD | remove o último item pelo carrinho', async ({ page }, testInfo) => {
     await openCatalog(page);
     const cartBadge = page.getByTestId('shopping-cart-badge');
+    const backpack = backpackOnPage(page);
+    const removeButton = backpack.getByRole('button', { name: 'Remove', exact: true });
 
-    await backpackOnPage(page).getByRole('button', { name: 'Add to cart', exact: true }).click();
+    await expect(cartBadge).toHaveCount(0);
+    await backpack.getByRole('button', { name: 'Add to cart', exact: true }).click();
     await expect(cartBadge).toHaveText('1');
+    await expect(removeButton).toBeVisible();
     await page.getByTestId('shopping-cart-link').click();
     await expect(page).toHaveURL('/cart.html');
     await expect(page.getByTestId('title')).toHaveText('Your Cart');
 
     const cartItems = page.getByTestId('cart-list').getByTestId('inventory-item');
     await expect(cartItems.getByTestId('inventory-item-name')).toHaveText([BACKPACK_NAME]);
-    await backpackOnPage(page).getByRole('button', { name: 'Remove', exact: true }).click();
+    await expect(backpack.getByTestId('item-quantity')).toHaveText('1');
+    await removeButton.click();
     await expect(cartItems).toHaveCount(0);
     await expect(cartBadge).toHaveCount(0);
     await attachScreenshot(page, testInfo, 'CT-06-CAR-STD-carrinho-vazio');
