@@ -22,7 +22,7 @@ test.describe('RT-04 | Carrinho', () => {
 
       await removeButton.click();
       await attachScreenshot(page, testInfo, `${id}-apos-remover`);
-      await expect.soft(backpack.getByRole('button')).toHaveText('Add to cart');
+      await expect.soft(addButton.or(removeButton)).toHaveText('Add to cart');
       await expect.soft(cartBadge).toHaveCount(0);
 
       await page.getByTestId('shopping-cart-link').click();

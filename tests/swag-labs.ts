@@ -5,6 +5,11 @@ export const DEMO_PASSWORD = 'secret_sauce';
 export const BACKPACK_NAME = 'Sauce Labs Backpack';
 
 export async function submitLogin(page: Page, username: string, password: string) {
+  // A execução funcional usa somente os recursos servidos pelo Swag Labs.
+  await page.route(
+    (url) => url.origin !== 'https://www.saucedemo.com',
+    (route) => route.abort('blockedbyclient'),
+  );
   await page.goto('/');
   await page.getByTestId('username').fill(username);
   await page.getByTestId('password').fill(password);

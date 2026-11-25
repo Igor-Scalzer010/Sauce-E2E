@@ -14,6 +14,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://www.saucedemo.com/',
     testIdAttribute: 'data-test',
+    serviceWorkers: 'block',
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
   },

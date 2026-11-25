@@ -10,7 +10,7 @@ Testes automatizados de ponta a ponta do [Swag Labs](https://www.saucedemo.com/)
 | RT-04 — Carrinho | Adicionar e remover um produto no catálogo ou no carrinho e conferir os controles, o contador e a lista de itens. | CE-06 | [cart.spec.ts](tests/cart.spec.ts) |
 | RT-07 — Conclusão e cancelamento da compra | Finalizar o pedido e esvaziar o carrinho ou cancelar nas etapas previstas. | CE-11, CE-12 | [checkout.spec.ts](tests/checkout.spec.ts) |
 
-Os 13 cenários usam contas de demonstração do Swag Labs e são executados em Chromium, Firefox e WebKit, totalizando 39 execuções. Cada teste começa com um novo contexto de navegador.
+Os 13 cenários usam contas de demonstração do Swag Labs e são executados em Chromium, Firefox e WebKit, totalizando 39 execuções. Cada teste começa com um novo contexto de navegador e acessa apenas a origem do Swag Labs. Recursos de terceiros, como telemetria e fontes externas, são bloqueados durante a execução.
 
 ## Executar localmente
 
