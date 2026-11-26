@@ -1,14 +1,14 @@
 # Sauce E2E
 
-Testes automatizados de ponta a ponta do [Swag Labs](https://www.saucedemo.com/) com Playwright e TypeScript. A suíte continua o projeto de casos de teste da disciplina de Qualidade e Testes de Software.
+Testes automatizados de ponta a ponta do [Swag Labs](https://www.saucedemo.com/) com Playwright e TypeScript. A suíte verifica os fluxos de autenticação, carrinho e checkout pela interface da loja de demonstração.
 
 ## Requisitos
 
-| Requisito | Comportamento validado | Casos da entrega anterior | Arquivo |
-| --- | --- | --- | --- |
-| RT-01 — Autenticação | Entrar com credenciais válidas e rejeitar credenciais inválidas, campos obrigatórios vazios e usuário bloqueado. | CE-01, CE-02, CE-03 | [login.spec.ts](tests/login.spec.ts) |
-| RT-04 — Carrinho | Adicionar e remover um produto no catálogo ou no carrinho e conferir os controles, o contador e a lista de itens. | CE-06 | [cart.spec.ts](tests/cart.spec.ts) |
-| RT-07 — Conclusão e cancelamento da compra | Finalizar o pedido e esvaziar o carrinho ou cancelar nas etapas previstas. | CE-11, CE-12 | [checkout.spec.ts](tests/checkout.spec.ts) |
+| Requisito | Comportamento validado | Arquivo |
+| --- | --- | --- |
+| RT-01 — Autenticação | Entrar com credenciais válidas e rejeitar credenciais inválidas, campos obrigatórios vazios e usuário bloqueado. | [login.spec.ts](tests/login.spec.ts) |
+| RT-04 — Carrinho | Adicionar e remover um produto no catálogo ou no carrinho e conferir os controles, o contador e a lista de itens. | [cart.spec.ts](tests/cart.spec.ts) |
+| RT-07 — Conclusão e cancelamento da compra | Finalizar o pedido e esvaziar o carrinho ou cancelar nas etapas previstas. | [checkout.spec.ts](tests/checkout.spec.ts) |
 
 Os 13 cenários usam contas de demonstração do Swag Labs e são executados em Chromium, Firefox e WebKit, totalizando 39 execuções. Cada teste começa com um novo contexto de navegador e acessa apenas a origem do Swag Labs. Recursos de terceiros, como telemetria e fontes externas, são bloqueados durante a execução.
 
@@ -30,7 +30,7 @@ No Linux, instale também as dependências do sistema com `npx playwright instal
 | --- | --- |
 | `npm test` | Suíte completa, incluindo cenários de diagnóstico. |
 | `npm run test:baseline` | Cenários fora da tag `@diagnostico`. |
-| `npm run test:diagnostics` | Cenários `CT-06-CAT-PROB` e `CT-11-ERR`, associados às inconsistências da entrega anterior. |
+| `npm run test:diagnostics` | Cenários `CT-06-CAT-PROB` e `CT-11-ERR`, que verificam a remoção no catálogo com `problem_user` e a finalização da compra com `error_user`. |
 | `npm test -- --project=chromium` | Suíte completa apenas no Chromium. |
 | `npm test -- tests/cart.spec.ts` | Apenas o requisito de carrinho nos três navegadores. |
 
